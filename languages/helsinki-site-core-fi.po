@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Helsinki Site Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:32+0000\n"
-"PO-Revision-Date: 2023-10-10 08:34+0000\n"
+"POT-Creation-Date: 2023-10-10 08:58+0000\n"
+"PO-Revision-Date: 2023-10-10 09:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: Suomi\n"
 "Language: fi\n"
@@ -18,6 +18,11 @@ msgstr ""
 #. Author of the plugin
 msgid "ArtCloud"
 msgstr "ArtCloud"
+
+#: features/block-editor/reusable-blocks-menu.php:19
+#: features/block-editor/reusable-blocks-menu.php:20
+msgid "Blocks"
+msgstr "Lohkot"
 
 #. Name of the plugin
 msgid "Helsinki Site Core"
@@ -37,9 +42,8 @@ msgctxt "Login error"
 msgid ""
 "Please contact your site admin or developer if you continue having problems."
 msgstr ""
-"Ota yhteyttä sivustosi järjestelmänvalvojaan tai kehittäjään, jos ongelmat "
-"jatkuvat."
+"Ota yhteyttä sivustosi ylläpitäjään tai kehittäjään, jos ongelmat jatkuvat."
 
 #. Description of the plugin
 msgid "Opinionated default customizations for Helsinki WordPress sites"
-msgstr "Mielipiteen mukaiset oletusmuokkaukset Helsingin WordPress-sivustoille"
+msgstr "Mielipiteellisiä oletusmuokkauksia Helsingin WordPress-sivustoihin."
