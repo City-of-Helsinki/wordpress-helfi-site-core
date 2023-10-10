@@ -1,0 +1,20 @@
+body.login #login h1 a {
+  background: none;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+  text-indent: 0;
+}
+
+body.login #login h1 a img {
+  height: auto;
+  margin: 0 auto;
+  max-height: 100px;
+  max-width: 100%;
+  width: auto;
+}

@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helsinki Site Core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-10 08:32+0000\n"
+"PO-Revision-Date: 2023-10-10 08:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: Suomi\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.6; wp-6.3.1\n"
+"X-Domain: helsinki-site-core"
+
+#. Author of the plugin
+msgid "ArtCloud"
+msgstr "ArtCloud"
+
+#. Name of the plugin
+msgid "Helsinki Site Core"
+msgstr "Helsinki-sivustoydin"
+
+#. Author URI of the plugin
+msgid "https://www.artcloud.fi"
+msgstr "https://www.artcloud.fi"
+
+#: features/login/view.php:26
+msgctxt "Login error"
+msgid "Login failed."
+msgstr "Kirjautuminen epäonnistui."
+
+#: features/login/view.php:27
+msgctxt "Login error"
+msgid ""
+"Please contact your site admin or developer if you continue having problems."
+msgstr ""
+"Ota yhteyttä sivustosi järjestelmänvalvojaan tai kehittäjään, jos ongelmat "
+"jatkuvat."
+
+#. Description of the plugin
+msgid "Opinionated default customizations for Helsinki WordPress sites"
+msgstr "Mielipiteen mukaiset oletusmuokkaukset Helsingin WordPress-sivustoille"
