@@ -30,6 +30,12 @@ WordPress core customizations with actions and filters.
 - Remove search item
 - Remove WP item
 
+### Users
+- Disable user contact methods
+- Disable user url field
+- Disable user description field
+- Disable user avatars
+
 ### WP Head
 - Remove unnecessary links and meta data from `wp_head()`
 
@@ -41,3 +47,8 @@ Plugin integrations with actions and filters.
 
 ### Redirection
 [Redirection on wordpress.org](https://fi.wordpress.org/plugins/redirection/)
+
+### Polylang
+[Polylang on wordpress.org](https://fi.wordpress.org/plugins/polylang/)
+
+- Remove `pll_user` script from user related admin views
