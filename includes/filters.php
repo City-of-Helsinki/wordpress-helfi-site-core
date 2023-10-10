@@ -24,6 +24,7 @@ function setup_filters() : void {
 	  'path_to_file',
 	  'path_to_php_file',
 	  'load_config',
+	  'is_must_use_plugin',
 	];
 
 	foreach ($filters as $filter) {
