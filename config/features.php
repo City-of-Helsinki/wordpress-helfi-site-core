@@ -20,4 +20,7 @@ return [
 	'login' => [
 		'view',
 	],
+	'users' => [
+		'profile',
+	],
 ];
