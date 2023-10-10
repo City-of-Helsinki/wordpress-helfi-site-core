@@ -13,7 +13,7 @@ add_action( 'helsinki_site_core_loaded', __NAMESPACE__ . '\\init' );
 function init(): void {
 	add_filter( 'login_headerurl', __NAMESPACE__ . '\\custom_login_headerurl' );
 	add_filter( 'login_headertext', __NAMESPACE__ . '\\custom_login_headertext', 11 );
-	add_filter( 'login_errors', __NAMESPACE__ . '\\generic_errors' );
+	add_filter( 'login_errors', __NAMESPACE__ . '\\generic_errors', 9999 );
 	add_action( 'login_enqueue_scripts', __NAMESPACE__ . '\\custom_login_styles', 9999 );
 }
 
