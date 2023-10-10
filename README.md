@@ -48,6 +48,9 @@ Plugin integrations with actions and filters.
 ### Redirection
 [Redirection on wordpress.org](https://fi.wordpress.org/plugins/redirection/)
 
+- Overwrite plugin options to prevent IP logging and HTTP header information logging
+- Prevent IP or HTTP header information from being stored to log entries
+
 ### Polylang
 [Polylang on wordpress.org](https://fi.wordpress.org/plugins/polylang/)
 
