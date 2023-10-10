@@ -45,6 +45,8 @@ Plugin integrations with actions and filters.
 ### Limit Login Attempts Reloaded
 [Limit Login Attempts Reloaded on wordpress.org](https://fi.wordpress.org/plugins/limit-login-attempts-reloaded/)
 
+- Daily scheduled operation to clear lockout logs
+
 ### Redirection
 [Redirection on wordpress.org](https://fi.wordpress.org/plugins/redirection/)
 
