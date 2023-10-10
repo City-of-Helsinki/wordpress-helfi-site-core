@@ -16,8 +16,8 @@ function init(): void {
 
 function reusable_blocks_menu(): void {
 	add_menu_page(
-		__('Blocks'),
-		__('Blocks'),
+		__( 'Blocks', 'helsinki-site-core' ),
+		__( 'Blocks', 'helsinki-site-core' ),
 		'edit_posts',
 		'edit.php?post_type=wp_block',
 		'',
