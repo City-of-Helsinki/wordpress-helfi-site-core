@@ -6,5 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 return [
 	'limit-login-attempts-reloaded' => 'data-cleaner',
+	'polylang' => 'users',
 	'redirection' => 'default-options',
 ];
