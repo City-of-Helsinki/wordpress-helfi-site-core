@@ -37,18 +37,3 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\\loaded' );
   */
 add_action( 'init', __NAMESPACE__ . '\\init', 100 );
 add_action( 'helsinki_site_core_init', __NAMESPACE__ . '\\textdomain' );
-
-/**
-  * Activation
-  */
-// register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate' );
-
-/**
-  * Deactivation
-  */
-// register_deactivation_hook( __FILE__, __NAMESPACE__ . '\\deactivate' );
-
-/**
-  * Uninstall
-  */
-// register_uninstall_hook( __FILE__, __NAMESPACE__ . '\\uninstall' );
