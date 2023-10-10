@@ -18,6 +18,7 @@ function define_constants(string $file) : void {
 	$dirname = dirname( $file );
 	$basename = basename( $file );
 	$dirbasename = basename( $dirname );
+	$is_mu_plugin = (false !== strpos($file, WPMU_PLUGIN_DIR));
 
 	define( __NAMESPACE__ . '\\PLUGIN_VERSION', $pluginData['Version'] );
 	define( __NAMESPACE__ . '\\PLUGIN_MAIN_FILE', $file );
@@ -27,6 +28,7 @@ function define_constants(string $file) : void {
 	define( __NAMESPACE__ . '\\PLUGIN_SLUG', str_replace( '-', '_', PLUGIN_DIRNAME ) );
 	define( __NAMESPACE__ . '\\PLUGIN_NAME', $dirbasename . DIRECTORY_SEPARATOR . $basename );
 	define( __NAMESPACE__ . '\\PLUGIN_URL', plugin_dir_url( $file ) );
+	define( __NAMESPACE__ . '\\IS_MUST_USE_PLUGIN', $is_mu_plugin );
 }
 
 /**
@@ -66,6 +68,10 @@ function plugin_url() : string {
 
 function is_debug() : bool {
 	return defined('WP_DEBUG') && WP_DEBUG;
+}
+
+function is_must_use_plugin() : bool {
+	return IS_MUST_USE_PLUGIN;
 }
 
 function asset_version() : string {
