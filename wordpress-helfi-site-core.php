@@ -22,10 +22,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
   * Setup
   */
-require_once 'constants.php';
+require_once plugin_dir_path( __FILE__ ) . 'constants.php';
 define_constants( __FILE__ );
 
-require_once 'functions.php';
+require_once plugin_dir_path( __FILE__ ) . 'functions.php';
 load_includes();
 
 spl_autoload_register( __NAMESPACE__ . '\\class_loader' );
