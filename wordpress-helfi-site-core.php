@@ -4,7 +4,7 @@
 	* Description: Opinionated default customizations for Helsinki WordPress sites
 	* Requires at least: 6.0
 	* Requires PHP: 7.4
-	* Version: 1.3.0
+	* Version: 1.3.1
 	* Author: ArtCloud
 	* Author URI: https://www.artcloud.fi
 	* License: GPL v3 or later
