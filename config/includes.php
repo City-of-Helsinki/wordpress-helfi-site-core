@@ -4,8 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-return [
+return array(
 	'filters',
 	'i18n',
 	'lifecycle',
-];
+);
