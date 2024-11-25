@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Helsinki Site Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 09:01+0000\n"
+"POT-Creation-Date: 2024-11-25 11:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -23,6 +23,10 @@ msgstr ""
 #: features/block-editor/reusable-blocks-menu.php:19
 #: features/block-editor/reusable-blocks-menu.php:20
 msgid "Blocks"
+msgstr ""
+
+#: features/search/meta.php:32
+msgid "City of Helsinki"
 msgstr ""
 
 #. Name of the plugin
@@ -46,4 +50,18 @@ msgstr ""
 
 #. Description of the plugin
 msgid "Opinionated default customizations for Helsinki WordPress sites"
+msgstr ""
+
+#: features/search/meta.php:45
+#, php-format
+msgctxt "search meta_title %1$d: count %2$s: search term"
+msgid "%1$d result for the search term %2$s"
+msgid_plural "%1$d results for the search term %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: features/search/meta.php:37
+#, php-format
+msgctxt "search meta_title %1$s: search term"
+msgid "0 results for the search term %1$s"
 msgstr ""
