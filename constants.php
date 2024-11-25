@@ -75,7 +75,7 @@ function is_must_use_plugin() : bool {
 }
 
 function asset_version() : string {
-	return plugin_version();
+	return is_debug() ? (string) time() : plugin_version();
 }
 
 function assets_url() : string {
