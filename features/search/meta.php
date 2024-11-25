@@ -35,7 +35,7 @@ function search_meta_title_parts( int $found, string $term ): array {
 
 function no_search_items_found_text( string $term ): string {
 	return sprintf( _x(
-		'0 search results found for %1$s',
+		'0 results for the search term %1$s',
 		'search meta_title %1$s: search term',
 		'helsinki-site-core'
 	), $term );
@@ -43,8 +43,8 @@ function no_search_items_found_text( string $term ): string {
 
 function n_search_items_found_text( int $count, string $term ): string {
 	return sprintf( _nx(
-		'%1$d search result found for %2$s',
-		'%1$d search results found for %2$s',
+		'%1$d result for the search term %2$s',
+		'%1$d results for the search term %2$s',
 		$count,
 		'search meta_title %1$d: count %2$s: search term',
 		'helsinki-site-core'
