@@ -35,5 +35,5 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\\loaded' );
 /**
   * Init
   */
+add_action( 'init', __NAMESPACE__ . '\\textdomain' );
 add_action( 'init', __NAMESPACE__ . '\\init', 100 );
-add_action( 'helsinki_site_core_init', __NAMESPACE__ . '\\textdomain' );
