@@ -20,15 +20,32 @@ class Facebook_Feed_Adapter implements Social_Feed_Adapter_Interface
 		}
 
 		$this->page_id = $page_id;
-		$this->title = $title;
+		$this->title = trim( $title );
 	}
 
 	public function render_source(): string
 	{
 		return sprintf(
-			'<a href="https://www.facebook.com/%1$s">%2$s</a>',
-			esc_url( $this->page_id ),
-			esc_html( $this->title ?: 'Facebook' )
+			'<a href="%1$s" rel="noopener">%2$s</a>',
+			esc_url( $this->link_url() ),
+			esc_html( $this->anchor_text() )
 		);
+	}
+
+	protected function link_url(): string
+	{
+		return 'https://www.facebook.com/' . $this->page_id;
+	}
+
+	protected function anchor_text(): string
+	{
+		if ( $this->title ) {
+			return sprintf(
+				_x( 'Follow %1$s on Facebook', '%1$s: profile name', 'helsinki-site-core' ),
+				$this->title
+			);
+		} else {
+			return __( 'Follow us on Facebook', 'helsinki-site-core' );
+		}
 	}
 }
