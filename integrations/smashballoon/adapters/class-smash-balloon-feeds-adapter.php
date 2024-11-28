@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use CustomFacebookFeed\Builder\CFF_Db;
+use TwitterFeed\Builder\CTF_Db;
 use SB\SocialWall\Admin\Feed_Saver;
 
 class Smash_Balloon_Feeds_Adapter implements Social_Feeds_Adapter_Interface
@@ -15,13 +16,8 @@ class Smash_Balloon_Feeds_Adapter implements Social_Feeds_Adapter_Interface
 	{
 		$feed_id = $this->feed_id( $attributes );
 
-		$feed_saver = $feed_id ? new Feed_Saver( $feed_id ) : null;
-		if ( ! $feed_saver ) {
-			return null;
-		}
-
 		$adapters = array();
-		foreach ( $feed_saver->get_feed_plugins() as $type => $config ) {
+		foreach ( $this->social_wall_feeds( $feed_id ) as $type => $config ) {
 			$feed_adapter = $this->from_string( $type, $config->id );
 
 			if ( $feed_adapter ) {
@@ -32,16 +28,27 @@ class Smash_Balloon_Feeds_Adapter implements Social_Feeds_Adapter_Interface
 		return $adapters ? new Composite_Feed_Adapter( ...$adapters ) : null;
 	}
 
+	protected function social_wall_feeds( int $feed_id ): array
+	{
+		return ( $feed_id && class_exists( Feed_Saver::class ) )
+			? (new Feed_Saver( $feed_id ))->get_feed_plugins()
+			: array();
+	}
+
 	public function facebook_feed( array $attributes ): ?Social_Feed_Adapter_Interface
 	{
-		$feed_id = $this->feed_id( $attributes );
+		$source = $this->facebook_source_info( $this->feed_id( $attributes ) );
 
-		$source = $feed_id ? CFF_Db::get_feed_source_info( $feed_id ) : null;
-		if ( empty( $source['id'] ) ) {
-			return null;
-		}
+		return ! empty( $source['id'] )
+			? new Facebook_Feed_Adapter( $source['id'], $source['name'] )
+			: null;
+	}
 
-		return new Facebook_Feed_Adapter( $source['id'], $source['name'] );
+	protected function facebook_source_info( int $feed_id ): array
+	{
+		return ( $feed_id && class_exists( CFF_Db::class ) )
+			? CFF_Db::get_feed_source_info( $feed_id )
+			: array();
 	}
 
 	public function instagram_feed( array $attributes ): ?Social_Feed_Adapter_Interface
@@ -49,14 +56,35 @@ class Smash_Balloon_Feeds_Adapter implements Social_Feeds_Adapter_Interface
 		return null;
 	}
 
+	protected function instagram_source_info( int $feed_id ): array
+	{
+		return array();
+	}
+
 	public function twitter_feed( array $attributes ): ?Social_Feed_Adapter_Interface
 	{
-		return null;
+		$source = $this->twitter_source_info( $this->feed_id( $attributes ) );
+
+		return ! empty( $source['name'] )
+			? new Twitter_Feed_Adapter( $source['name'] )
+			: null;
+	}
+
+	protected function twitter_source_info( int $feed_id ): array
+	{
+		return ( $feed_id && class_exists( CTF_Db::class ) )
+			? CTF_Db::get_feed_source_info( $feed_id )
+			: array();
 	}
 
 	public function youtube_feed( array $attributes ): ?Social_Feed_Adapter_Interface
 	{
 		return null;
+	}
+
+	protected function youtube_source_info( int $feed_id ): array
+	{
+		return array();
 	}
 
 	protected function from_string( string $type, int $feed_id ): ?Social_Feed_Adapter_Interface
