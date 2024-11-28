@@ -8,13 +8,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Twitter_Feed_Adapter implements Social_Feed_Adapter_Interface
 {
-	public function __construct()
-	{
+	protected string $name;
 
+	public function __construct( string $name )
+	{
+		if ( ! $name ) {
+			throw new \InvalidArgumentException(
+				__( 'Twitter or X name required.', 'helsinki-site-core' )
+			);
+		}
+
+		$this->name = trim( $name );
 	}
 
 	public function render_source(): string
 	{
-		return '';
+		return sprintf(
+			'<a href="%1$s" rel="noopener">%2$s</a>',
+			esc_url( $this->link_url() ),
+			esc_html( $this->anchor_text() )
+		);
+	}
+
+	protected function link_url(): string
+	{
+		return 'https://x.com/' . mb_strtolower( $name );
+	}
+
+	protected function anchor_text(): string
+	{
+		return sprintf(
+			_x( 'Follow @%1$s on X', '%1$s: profile name', 'helsinki-site-core' ),
+			$this->name
+		);
 	}
 }
