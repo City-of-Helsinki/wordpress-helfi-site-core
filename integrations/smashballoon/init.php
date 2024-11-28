@@ -40,13 +40,10 @@ function smash_balloon_shortcode_filters(): array {
 		$filters['custom-facebook-feed'] = Shortcodes\Custom_Facebook_Feed_Filter::class;
 	}
 
-	// if ( class_exists( 'foo' ) ) {
-	// 	$filters['custom-twitter-feed'] = Shortcodes\Custom_Twitter_Feed_Filter::class;
-	// }
-
-	// if ( class_exists( 'foo' ) ) {
-	// 	$filters['custom-twitter-feeds'] = Shortcodes\Custom_Twitter_Feeds_Filter::class;
-	// }
+	if ( class_exists( 'TwitterFeed\Builder\CTF_Db' ) ) {
+		$filters['custom-twitter-feed'] = Shortcodes\Custom_Twitter_Feed_Filter::class;
+		$filters['custom-twitter-feeds'] = Shortcodes\Custom_Twitter_Feeds_Filter::class;
+	}
 
 	if ( class_exists( 'SB\SocialWall\Admin\Feed_Saver' ) ) {
 		$filters['social-wall'] = Shortcodes\Social_Wall_Filter::class;
