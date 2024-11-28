@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use CustomFacebookFeed\Builder\CFF_Db;
 use TwitterFeed\Builder\CTF_Db;
+use InstagramFeed\Builder\SBI_Feed_Saver;
 use SB\SocialWall\Admin\Feed_Saver;
 
 class Smash_Balloon_Feeds_Adapter implements Social_Feeds_Adapter_Interface
@@ -53,12 +54,22 @@ class Smash_Balloon_Feeds_Adapter implements Social_Feeds_Adapter_Interface
 
 	public function instagram_feed( array $attributes ): ?Social_Feed_Adapter_Interface
 	{
-		return null;
+		$source = $this->instagram_source_info( $this->feed_id( $attributes ) );
+
+		return ! empty( $source['username'] )
+			? new Instagram_Feed_Adapter( $source['username'] )
+			: null;
 	}
 
 	protected function instagram_source_info( int $feed_id ): array
 	{
-		return array();
+		if ( $feed_id && class_exists( SBI_Feed_Saver::class ) ) {
+			$settings = (new SBI_Feed_Saver( $feed_id ))->get_feed_settings();
+
+			return is_array( $settings ) ? $settings : array();
+		} else {
+			return array();
+		}
 	}
 
 	public function twitter_feed( array $attributes ): ?Social_Feed_Adapter_Interface
