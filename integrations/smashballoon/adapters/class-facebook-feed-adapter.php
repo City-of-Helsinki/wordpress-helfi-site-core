@@ -34,7 +34,7 @@ class Facebook_Feed_Adapter implements Social_Feed_Adapter_Interface
 
 	protected function link_url(): string
 	{
-		return 'https://www.facebook.com/' . $this->page_id;
+		return 'https://www.facebook.com/' . $this->page_id . '/';
 	}
 
 	protected function anchor_text(): string
