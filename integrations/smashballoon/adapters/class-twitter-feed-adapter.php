@@ -14,7 +14,7 @@ class Twitter_Feed_Adapter implements Social_Feed_Adapter_Interface
 	{
 		if ( ! $name ) {
 			throw new \InvalidArgumentException(
-				__( 'Twitter or X name required.', 'helsinki-site-core' )
+				__( 'Twitter or X username required.', 'helsinki-site-core' )
 			);
 		}
 
@@ -32,13 +32,13 @@ class Twitter_Feed_Adapter implements Social_Feed_Adapter_Interface
 
 	protected function link_url(): string
 	{
-		return 'https://x.com/' . mb_strtolower( $name );
+		return 'https://x.com/' . mb_strtolower( $this->name ) . '/';
 	}
 
 	protected function anchor_text(): string
 	{
 		return sprintf(
-			_x( 'Follow @%1$s on X', '%1$s: profile name', 'helsinki-site-core' ),
+			_x( 'Follow %1$s on X', '%1$s: profile name', 'helsinki-site-core' ),
 			$this->name
 		);
 	}
