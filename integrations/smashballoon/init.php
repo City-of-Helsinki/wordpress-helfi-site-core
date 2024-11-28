@@ -49,9 +49,9 @@ function smash_balloon_shortcode_filters(): array {
 		$filters['social-wall'] = Shortcodes\Social_Wall_Filter::class;
 	}
 
-	// if ( class_exists( 'foo' ) ) {
-	// 	$filters['custom-twitter-feeds'] = Shortcodes\Instagram_Feed_Filter::class;
-	// }
+	if ( class_exists( 'InstagramFeed\Builder\SBI_Feed_Saver' ) ) {
+		$filters['instagram-feed'] = Shortcodes\Instagram_Feed_Filter::class;
+	}
 
 	// if ( class_exists( 'foo' ) ) {
 	// 	$filters['youtube-feed'] = Shortcodes\YouTube_Feed_Filter::class;
