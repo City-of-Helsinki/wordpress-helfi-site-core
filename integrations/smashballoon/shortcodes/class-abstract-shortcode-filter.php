@@ -22,7 +22,7 @@ abstract class Abstract_Shortcode_Filter implements Shortcode_Filter_Interface
 		return sprintf(
 			'<div class="%1$s">
 				<div class="helsinki-social-feed" aria-hidden="true">%2$s</div>
-				<div class="screen-reader-text--temp" style="background: red;">%3$s</div>
+				<div class="screen-reader-text">%3$s</div>
 			</div>',
 			esc_attr( implode( ' ', $this->social_feed_wrap_classes() ) ),
 			$output,
