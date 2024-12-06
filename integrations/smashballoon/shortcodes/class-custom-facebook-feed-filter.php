@@ -6,17 +6,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Custom_Facebook_Feed_Filter extends Abstract_Shortcode_Bypasser
+class Custom_Facebook_Feed_Filter extends Abstract_Shortcode_Filter
 {
 	protected function social_feed_wrap_type(): string
 	{
 		return 'facebook';
 	}
 
-	protected function screen_reader_content( array $attributes ): string
+	protected function adapter_feed_callback(): string
 	{
-		$feed = $this->adapter->facebook_feed( $attributes );
-
-		return $feed ? $feed->render_source() : '';
+		return 'facebook_feed';
 	}
 }
