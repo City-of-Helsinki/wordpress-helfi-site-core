@@ -11,7 +11,7 @@ use Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Sources\Source_Info_F
 
 add_action( 'helsinki_site_core_init', __NAMESPACE__ . '\\init' );
 function init(): void {
-	setup_feed_type_status_filters();
+	setup_smash_balloon_plugin_status_filters();
 
 	$provider = default_filters_provider();
 
@@ -20,7 +20,7 @@ function init(): void {
 	}
 }
 
-function setup_feed_type_status_filters(): void {
+function setup_smash_balloon_plugin_status_filters(): void {
 	if ( class_exists( 'CustomFacebookFeed\Builder\CFF_Feed_Saver' ) ) {
 		add_filter( 'helsinki_site_core_is_smash_balloon_facebook_active', '__return_true' );
 	}
