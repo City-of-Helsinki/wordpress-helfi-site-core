@@ -6,12 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use CustomFacebookFeed\Builder\CFF_Feed_Saver;
-use TwitterFeed\Builder\CTF_Feed_Saver;
-use InstagramFeed\Builder\SBI_Feed_Saver;
-use SB\SocialWall\Admin\Feed_Saver;
-use SmashBalloon\YouTubeFeed\Builder\SBY_Feed_Saver;
-
 class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 {
 	protected Source_Info_Interface $no_info;
@@ -21,14 +15,14 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 	protected bool $twitter_source;
 	protected bool $youtube_source;
 
-	public function __construct()
+	public function __construct( array $config )
 	{
 		$this->no_info = new No_Source_Info();
-		$this->facebook_source = class_exists( CFF_Feed_Saver::class );
-		$this->instagram_source = class_exists( SBI_Feed_Saver::class );
-		$this->social_wall_source = class_exists( Feed_Saver::class );
-		$this->twitter_source = class_exists( CTF_Feed_Saver::class );
-		$this->youtube_source = class_exists( SBY_Feed_Saver::class );
+		$this->facebook_source = ! empty( $config['facebook'] );
+		$this->instagram_source = ! empty( $config['instagram'] );
+		$this->social_wall_source = ! empty( $config['social_wall'] );
+		$this->twitter_source = ! empty( $config['twitter'] );
+		$this->youtube_source = ! empty( $config['youtube'] );
 	}
 
 	public function social_wall_feeds( array $attributes ): Source_Info_Interface
@@ -40,7 +34,7 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 		}
 
 		return new Social_Wall_Source_Info(
-			(new Feed_Saver( $feed_id ))->get_feed_plugins()
+			(new \SB\SocialWall\Admin\Feed_Saver( $feed_id ))->get_feed_plugins()
 		);
 	}
 
@@ -53,7 +47,7 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 		}
 
 		return new Facebook_Source_Info(
-			(new CFF_Feed_Saver( $feed_id ))->get_feed_settings()
+			(new \CustomFacebookFeed\Builder\CFF_Feed_Saver( $feed_id ))->get_feed_settings()
 		);
 	}
 
@@ -66,7 +60,7 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 		}
 
 		return new Instagram_Source_Info(
-			(new SBI_Feed_Saver( $feed_id ))->get_feed_settings()
+			(new \InstagramFeed\Builder\SBI_Feed_Saver( $feed_id ))->get_feed_settings()
 		);
 	}
 
@@ -79,7 +73,7 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 		}
 
 		return new Twitter_Source_Info(
-			(new CTF_Feed_Saver( $feed_id ))->get_feed_settings()
+			(new \TwitterFeed\Builder\CTF_Feed_Saver( $feed_id ))->get_feed_settings()
 		);
 	}
 
@@ -92,7 +86,7 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 		}
 
 		return new YouTube_Source_Info(
-			(new SBY_Feed_Saver( $feed_id ))->get_feed_settings()
+			(new \SmashBalloon\YouTubeFeed\Builder\SBY_Feed_Saver( $feed_id ))->get_feed_settings()
 		);
 	}
 
