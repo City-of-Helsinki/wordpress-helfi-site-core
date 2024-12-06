@@ -57,9 +57,7 @@ function default_filters_provider(): Shortcode_Filter_Provider {
 }
 
 function create_shortcode_filter_provider( Social_Feeds_Adapter_Interface $adapter ): Shortcode_Filter_Provider {
-	$provider = new Shortcode_Filter_Provider( $adapter );
-
-	return $provider;
+	return new Shortcode_Filter_Provider( $adapter );
 }
 
 function create_social_feeds_adapter( Source_Info_Factory_Interface $sources ): Social_Feeds_Adapter_Interface {
