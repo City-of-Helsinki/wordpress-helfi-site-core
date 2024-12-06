@@ -10,9 +10,9 @@ class Composite_Feed_Adapter implements Social_Feed_Adapter_Interface
 {
 	protected array $adapters;
 
-	public function __construct( Social_Feed_Adapter_Interface ...$adapters )
+	public function __construct( ?Social_Feed_Adapter_Interface ...$adapters )
 	{
-		$this->adapters = $adapters;
+		$this->adapters = $adapters ?: array();
 	}
 
 	public function render_source(): string

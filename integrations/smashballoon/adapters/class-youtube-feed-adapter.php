@@ -6,15 +6,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class YouTube_Feed_Adapter implements Social_Feed_Adapter_Interface
+class YouTube_Feed_Adapter extends Abstract_Social_Feed_Adapter
 {
-	public function __construct()
+	protected function link_url( string $index, string $username ): string
 	{
-
+		return 'https://www.youtube.com/channel/' . $username . '/';
 	}
 
-	public function render_source(): string
+	protected function anchor_text( string $index, string $username ): string
 	{
-		return '';
+		return sprintf(
+			_x( 'Follow %1$s on YouTube', '%1$s: profile name', 'helsinki-site-core' ),
+			$username
+		);
 	}
 }

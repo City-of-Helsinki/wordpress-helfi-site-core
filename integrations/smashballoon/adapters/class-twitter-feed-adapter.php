@@ -6,40 +6,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Twitter_Feed_Adapter implements Social_Feed_Adapter_Interface
+class Twitter_Feed_Adapter extends Abstract_Social_Feed_Adapter
 {
-	protected string $name;
-
-	public function __construct( string $name )
+	protected function link_url( string $name, string $type ): string
 	{
-		if ( ! $name ) {
-			throw new \InvalidArgumentException(
-				__( 'Twitter or X username required.', 'helsinki-site-core' )
-			);
+		if ( 'hashtags' === $type ) {
+			$name = 'hashtag/' . $name;
 		}
 
-		$this->name = trim( $name );
+		return 'https://x.com/' . $name . '/';
 	}
 
-	public function render_source(): string
+	protected function anchor_text( string $name, string $type ): string
 	{
-		return sprintf(
-			'<a href="%1$s" rel="noopener">%2$s</a>',
-			esc_url( $this->link_url() ),
-			esc_html( $this->anchor_text() )
-		);
-	}
-
-	protected function link_url(): string
-	{
-		return 'https://x.com/' . mb_strtolower( $this->name ) . '/';
-	}
-
-	protected function anchor_text(): string
-	{
-		return sprintf(
-			_x( 'Follow %1$s on X', '%1$s: profile name', 'helsinki-site-core' ),
-			$this->name
-		);
+		if ( 'hashtags' === $type ) {
+			return sprintf(
+				_x( 'More posts about %1$s on X', '%1$s: hashtag', 'helsinki-site-core' ),
+				'#' . $name
+			);
+		} else {
+			return sprintf(
+				_x( 'Follow %1$s on X', '%1$s: profile name', 'helsinki-site-core' ),
+				$name
+			);
+		}
 	}
 }
