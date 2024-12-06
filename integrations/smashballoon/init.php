@@ -75,7 +75,7 @@ function create_source_info_factory(): Source_Info_Factory_Interface {
 }
 
 function smash_balloon_shortcode_filters(): array {
-	$filters = [];
+	$filters = array();
 
 	if ( apply_filters( 'helsinki_site_core_is_smash_balloon_facebook_active', false ) ) {
 		$filters['custom-facebook-feed'] = Filters\Custom_Facebook_Feed_Filter::class;
