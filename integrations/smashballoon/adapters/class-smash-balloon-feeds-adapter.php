@@ -6,109 +6,51 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use CustomFacebookFeed\Builder\CFF_Db;
-use TwitterFeed\Builder\CTF_Db;
-use InstagramFeed\Builder\SBI_Feed_Saver;
-use SB\SocialWall\Admin\Feed_Saver;
+use Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Sources\Source_Info_Factory_Interface;
 
 class Smash_Balloon_Feeds_Adapter implements Social_Feeds_Adapter_Interface
 {
-	public function composite_feed( array $attributes ): ?Social_Feed_Adapter_Interface
+	protected Source_Info_Factory_Interface $sources;
+
+	public function __construct( Source_Info_Factory_Interface $sources )
 	{
-		$feed_id = $this->feed_id( $attributes );
+		$this->sources = $sources;
+	}
+
+	public function composite_feed( array $attributes ): Social_Feed_Adapter_Interface
+	{
+		$sources = $this->sources->social_wall_feeds( $attributes );
 
 		$adapters = array();
-		foreach ( $this->social_wall_feeds( $feed_id ) as $type => $config ) {
-			$feed_adapter = $this->from_string( $type, $config->id );
-
-			if ( $feed_adapter ) {
-				$adapters[] = $feed_adapter;
-			}
+		foreach ( $sources->usernames() as $type => $id ) {
+			$adapters[] = $this->from_string( $type, $id );
 		}
 
-		return $adapters ? new Composite_Feed_Adapter( ...$adapters ) : null;
+		return new Composite_Feed_Adapter( ...$adapters );
 	}
 
-	protected function social_wall_feeds( int $feed_id ): array
+	public function facebook_feed( array $attributes ): Social_Feed_Adapter_Interface
 	{
-		return ( $feed_id && class_exists( Feed_Saver::class ) )
-			? (new Feed_Saver( $feed_id ))->get_feed_plugins()
-			: array();
+		return new Facebook_Feed_Adapter( $this->sources->facebook_source_info( $attributes ) );
 	}
 
-	public function facebook_feed( array $attributes ): ?Social_Feed_Adapter_Interface
+	public function instagram_feed( array $attributes ): Social_Feed_Adapter_Interface
 	{
-		$source = $this->facebook_source_info( $this->feed_id( $attributes ) );
-
-		return ! empty( $source['id'] )
-			? new Facebook_Feed_Adapter( $source['id'], $source['name'] )
-			: null;
+		return new Instagram_Feed_Adapter( $this->sources->instagram_source_info( $attributes ) );
 	}
 
-	protected function facebook_source_info( int $feed_id ): array
+	public function twitter_feed( array $attributes ): Social_Feed_Adapter_Interface
 	{
-		return ( $feed_id && class_exists( CFF_Db::class ) )
-			? CFF_Db::get_feed_source_info( $feed_id )
-			: array();
+		return new Twitter_Feed_Adapter( $this->sources->twitter_source_info( $attributes ) );
 	}
 
-	public function instagram_feed( array $attributes ): ?Social_Feed_Adapter_Interface
+	public function youtube_feed( array $attributes ): Social_Feed_Adapter_Interface
 	{
-		$source = $this->instagram_source_info( $this->feed_id( $attributes ) );
-
-		return ! empty( $source['username'] )
-			? new Instagram_Feed_Adapter( $source['username'] )
-			: null;
+		return new YouTube_Feed_Adapter( $this->sources->youtube_source_info( $attributes ) );
 	}
 
-	protected function instagram_source_info( int $feed_id ): array
+	protected function from_string( string $type, int $feed_id ): Social_Feed_Adapter_Interface
 	{
-		if ( $feed_id && class_exists( SBI_Feed_Saver::class ) ) {
-			$settings = (new SBI_Feed_Saver( $feed_id ))->get_feed_settings();
-
-			return is_array( $settings ) ? $settings : array();
-		} else {
-			return array();
-		}
-	}
-
-	public function twitter_feed( array $attributes ): ?Social_Feed_Adapter_Interface
-	{
-		$source = $this->twitter_source_info( $this->feed_id( $attributes ) );
-
-		return ! empty( $source['name'] )
-			? new Twitter_Feed_Adapter( $source['name'] )
-			: null;
-	}
-
-	protected function twitter_source_info( int $feed_id ): array
-	{
-		return ( $feed_id && class_exists( CTF_Db::class ) )
-			? CTF_Db::get_feed_source_info( $feed_id )
-			: array();
-	}
-
-	public function youtube_feed( array $attributes ): ?Social_Feed_Adapter_Interface
-	{
-		return null;
-	}
-
-	protected function youtube_source_info( int $feed_id ): array
-	{
-		return array();
-	}
-
-	protected function from_string( string $type, int $feed_id ): ?Social_Feed_Adapter_Interface
-	{
-		$feed_adapter = "{$type}_feed";
-
-		return method_exists( $this, $feed_adapter )
-			? $this->$feed_adapter( array( 'feed' => $feed_id ) )
-			: null;
-	}
-
-	protected function feed_id( array $attributes ): int
-	{
-		return ! empty( $attributes['feed'] ) ? absint( $attributes['feed'] ) : 0;
+		return call_user_func( array( $this, "{$type}_feed" ), array( 'feed' => $feed_id ) );
 	}
 }
