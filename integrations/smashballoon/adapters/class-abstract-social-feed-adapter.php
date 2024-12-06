@@ -19,7 +19,11 @@ abstract class Abstract_Social_Feed_Adapter implements Social_Feed_Adapter_Inter
 
 	public function render_source(): string
 	{
-		return $this->list_html( $this->source_links() );
+		$links = $this->source_links();
+
+		return ( count( $links ) > 1 )
+			? $this->list_html( $links )
+			: implode( '', $links );
 	}
 
 	protected function source_links(): array
