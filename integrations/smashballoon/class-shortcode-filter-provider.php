@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Adapters\Social_Feeds_Adapter_Interface;
-use Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Shortcodes\Shortcode_Filter_Interface;
+use Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Filters\Shortcode_Filter_Interface;
 
 class Shortcode_Filter_Provider
 {

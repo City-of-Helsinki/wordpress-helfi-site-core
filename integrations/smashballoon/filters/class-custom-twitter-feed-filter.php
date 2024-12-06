@@ -1,12 +1,12 @@
 <?php
 
-namespace Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Shortcodes;
+namespace Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Filters;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Custom_Twitter_Feeds_Filter extends Abstract_Shortcode_Filter
+class Custom_Twitter_Feed_Filter extends Abstract_Shortcode_Filter
 {
 	protected function social_feed_wrap_type(): string
 	{

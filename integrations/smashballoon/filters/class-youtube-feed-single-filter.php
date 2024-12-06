@@ -1,6 +1,6 @@
 <?php
 
-namespace Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Shortcodes;
+namespace Helsinki\WordPress\Site\Core\Integrations\SmashBalloon\Filters;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

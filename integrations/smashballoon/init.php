@@ -50,26 +50,26 @@ function smash_balloon_shortcode_filters(): array {
 	$filters = [];
 
 	if ( class_exists( 'CustomFacebookFeed\Builder\CFF_Feed_Saver' ) ) {
-		$filters['custom-facebook-feed'] = Shortcodes\Custom_Facebook_Feed_Filter::class;
+		$filters['custom-facebook-feed'] = Filters\Custom_Facebook_Feed_Filter::class;
 	}
 
 	if ( class_exists( 'TwitterFeed\Builder\CTF_Db' ) ) {
-		$filters['custom-twitter-feed'] = Shortcodes\Custom_Twitter_Feed_Filter::class;
-		$filters['custom-twitter-feeds'] = Shortcodes\Custom_Twitter_Feeds_Filter::class;
+		$filters['custom-twitter-feed'] = Filters\Custom_Twitter_Feed_Filter::class;
+		$filters['custom-twitter-feeds'] = Filters\Custom_Twitter_Feeds_Filter::class;
 	}
 
 	if ( class_exists( 'SB\SocialWall\Admin\Feed_Saver' ) ) {
-		$filters['social-wall'] = Shortcodes\Social_Wall_Filter::class;
+		$filters['social-wall'] = Filters\Social_Wall_Filter::class;
 	}
 
 	if ( class_exists( 'InstagramFeed\Builder\SBI_Feed_Saver' ) ) {
-		$filters['instagram-feed'] = Shortcodes\Instagram_Feed_Filter::class;
+		$filters['instagram-feed'] = Filters\Instagram_Feed_Filter::class;
 	}
 
 	if ( class_exists( 'SmashBalloon\YouTubeFeed\Builder\SBY_Feed_Saver' ) ) {
-		$filters['youtube-feed'] = Shortcodes\YouTube_Feed_Filter::class;
-		$filters['youtube-feed-search'] = Shortcodes\YouTube_Feed_Search_Filter::class;
-		$filters['youtube-feed-single'] = Shortcodes\YouTube_Feed_Single_Filter::class;
+		$filters['youtube-feed'] = Filters\YouTube_Feed_Filter::class;
+		$filters['youtube-feed-search'] = Filters\YouTube_Feed_Search_Filter::class;
+		$filters['youtube-feed-single'] = Filters\YouTube_Feed_Single_Filter::class;
 	}
 
 	return $filters;
