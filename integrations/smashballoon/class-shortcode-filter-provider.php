@@ -55,14 +55,14 @@ class Shortcode_Filter_Provider
 
 	protected function create_filter( string $tag ): Shortcode_Filter_Interface
 	{
-		if ( $this->in_cache( $tag ) ) {
-			return $this->from_cache( $tag );
+		if ( $this->in_filters( $tag ) ) {
+			return $this->from_filters( $tag );
 		}
 
 		$class = $this->filter_class( $tag );
 		$filter = new $class( $this->adapter );
 
-		$this->to_cache( $tag, $filter );
+		$this->to_filters( $tag, $filter );
 
 		return $filter;
 	}
@@ -72,17 +72,17 @@ class Shortcode_Filter_Provider
 		return $this->tags[$tag];
 	}
 
-	protected function in_cache( string $tag ): bool
+	protected function in_filters( string $tag ): bool
 	{
 		return ! empty( $this->filters[$tag] );
 	}
 
-	protected function from_cache( string $tag ): Shortcode_Filter_Interface
+	protected function from_filters( string $tag ): Shortcode_Filter_Interface
 	{
 		return $this->filters[$tag];
 	}
 
-	protected function to_cache( string $tag, Shortcode_Filter_Interface $filter ): void
+	protected function to_filters( string $tag, Shortcode_Filter_Interface $filter ): void
 	{
 		$this->filters[$tag] = $filter;
 	}
