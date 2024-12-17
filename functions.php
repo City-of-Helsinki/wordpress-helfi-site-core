@@ -26,6 +26,7 @@ function class_loader( $class ) {
 	);
 
 	$class = array_pop( $parts );
+	$class = 'class-' . str_replace( '_', '-', strtolower( $class ) );
 
 	$file = path_to_php_file(array_merge(
 		array_map('strtolower', $parts),
