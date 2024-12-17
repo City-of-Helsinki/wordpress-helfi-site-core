@@ -14,7 +14,7 @@ function define_constants(string $file) : void {
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	}
 
-	$pluginData = get_plugin_data( $file );
+	$pluginData = get_plugin_data( $file, false, false );
 	$dirname = dirname( $file );
 	$basename = basename( $file );
 	$dirbasename = basename( $dirname );
@@ -75,7 +75,7 @@ function is_must_use_plugin() : bool {
 }
 
 function asset_version() : string {
-	return plugin_version();
+	return is_debug() ? (string) time() : plugin_version();
 }
 
 function assets_url() : string {
