@@ -19,11 +19,7 @@ abstract class Abstract_Social_Feed_Adapter implements Social_Feed_Adapter_Inter
 
 	public function render_source(): string
 	{
-		$links = $this->source_links();
-
-		return ( count( $links ) > 1 )
-			? $this->list_html( $links )
-			: implode( '', $links );
+		return implode( '', $this->source_links() );
 	}
 
 	protected function source_links(): array
@@ -57,19 +53,6 @@ abstract class Abstract_Social_Feed_Adapter implements Social_Feed_Adapter_Inter
 	protected function anchor_text( string $key, string $value ): string
 	{
 		return '';
-	}
-
-	protected function list_html( array $items ): string
-	{
-		return sprintf(
-			'<ul>%s</ul>',
-			implode( '', array_map( array( $this, 'list_item_html' ), $items ) )
-		);
-	}
-
-	protected function list_item_html( string $content ): string
-	{
-		return sprintf( '<li>%s</li>', $content );
 	}
 
 	protected function link_html( string $url, string $anchor ): string
