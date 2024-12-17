@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Helsinki Site Core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:58+0000\n"
-"PO-Revision-Date: 2024-11-25 12:02+0000\n"
+"PO-Revision-Date: 2024-12-17 10:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: Suomi\n"
 "Language: fi\n"
@@ -14,6 +14,36 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Domain: helsinki-site-core"
+
+#: integrations/smashballoon/adapters/class-twitter-feed-adapter.php:24
+#, php-format
+msgctxt "%1$s: hashtag"
+msgid "More posts about %1$s on X"
+msgstr "Lisää julkaisuja aiheesta %1$s X:ssä"
+
+#: integrations/smashballoon/adapters/class-facebook-feed-adapter.php:19
+#, php-format
+msgctxt "%1$s: profile name"
+msgid "%1$s on Facebook"
+msgstr "%1$s Facebookissa"
+
+#: integrations/smashballoon/adapters/class-instagram-feed-adapter.php:19
+#, php-format
+msgctxt "%1$s: profile name"
+msgid "%1$s on Instagram"
+msgstr "%1$s Instagramissa"
+
+#: integrations/smashballoon/adapters/class-twitter-feed-adapter.php:29
+#, php-format
+msgctxt "%1$s: profile name"
+msgid "%1$s on X"
+msgstr "%1$s X:ssä"
+
+#: integrations/smashballoon/adapters/class-youtube-feed-adapter.php:19
+#, php-format
+msgctxt "%1$s: profile name"
+msgid "%1$s on YouTube"
+msgstr "%1$s YouTubessa"
 
 #. Author of the plugin
 msgid "ArtCloud"
