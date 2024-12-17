@@ -26,7 +26,7 @@ class Twitter_Feed_Adapter extends Abstract_Social_Feed_Adapter
 			);
 		} else {
 			return sprintf(
-				_x( 'Follow %1$s on X', '%1$s: profile name', 'helsinki-site-core' ),
+				_x( '%1$s on X', '%1$s: profile name', 'helsinki-site-core' ),
 				$name
 			);
 		}
