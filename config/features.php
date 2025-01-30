@@ -4,23 +4,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-return [
-	'admin' => [
+return array(
+	'admin' => array(
 		'dashboard',
 		'notices',
 		'toolbar',
-	],
-	'block-editor' => [
+	),
+	'block-editor' => array(
 		'reusable-blocks-menu',
 		'view',
-	],
-	'cleanup' => [
+	),
+	'cleanup' => array(
 		'wp-head',
-	],
-	'login' => [
+	),
+	'login' => array(
 		'view',
-	],
-	'users' => [
+	),
+	'search' => array(
+		'meta',
+	),
+	'users' => array(
 		'profile',
-	],
-];
+	),
+);
