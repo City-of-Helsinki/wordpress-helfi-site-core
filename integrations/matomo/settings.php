@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Config
  */
 function settings_group_name(): string {
-    return 'helsinki-site-core-matomo';
+    return 'helsinki_site_core_matomo';
 }
 
 function default_setting_values(): array {
@@ -110,6 +110,13 @@ function add_settings( string $page, string $group, array $config ): void
 			);
 		}
     }
+}
+
+/**
+ * Handler
+ */
+function handle_settings_updated( $old_value, $value, $option ): void {
+	do_action( 'helsinki_site_core_cache_clear' );
 }
 
 /**
