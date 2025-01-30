@@ -6,6 +6,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 return array(
 	'limit-login-attempts-reloaded' => 'data-cleaner',
+	'matomo' => array(
+		'menu-page',
+		'settings-fields',
+		'settings',
+		'init',
+	),
 	'polylang' => 'users',
 	'redirection' => 'default-options',
 	'smashballoon' => 'init',
