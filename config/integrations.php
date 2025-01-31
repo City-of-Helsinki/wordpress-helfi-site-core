@@ -11,6 +11,7 @@ return array(
 		'menu-page',
 		'settings-fields',
 		'settings',
+		'tracking-code',
 		'init',
 	),
 	'polylang' => 'users',
