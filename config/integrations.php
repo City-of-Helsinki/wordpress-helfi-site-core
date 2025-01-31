@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return array(
+	'cache-enabler' => 'clear-cache',
 	'limit-login-attempts-reloaded' => 'data-cleaner',
 	'matomo' => array(
 		'menu-page',
