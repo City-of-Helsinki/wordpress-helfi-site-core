@@ -11,6 +11,8 @@ function init(): void {
 	\add_action( 'admin_init', __NAMESPACE__ . '\\register_matomo_settings' );
 	\add_action( 'admin_menu', __NAMESPACE__ . '\\register_menu_page' );
 
+	\add_action( 'wp_head', __NAMESPACE__ . '\\provide_tracking_script' );
+
 	\add_action( 'update_option_' . settings_group_name(), __NAMESPACE__ . '\\handle_settings_updated', 10, 3 );
 
 	\add_action( 'helsinki_site_core_matomo_admin_page', __NAMESPACE__ . '\\menu_page_layout', 1 );
