@@ -29,29 +29,11 @@ function build_tracking_script( array $settings ): string {
 
 	return sprintf(
 		'<meta name="helsinki-matomo" content="%d">
-		<script%s>%s %s</script>',
+		<script>%s %s</script>',
 		esc_attr( $config->site_id ),
-		build_script_attributes( $config ),
 		build_script_config( $config ),
 		build_script_handler( $config )
 	);
-}
-
-function build_script_attributes( Tracking_Code_Config $config ): string {
-	$attributes = \apply_filters(
-		'helsinki_site_core_matomo_script_attributes',
-		array(),
-		$config
-	);
-
-	$html = array();
-	foreach ( $attributes as $key => $value ) {
-		if ( is_valid_script_attribute( $key ) ) {
-			$html = sprintf( '%s="%s"', sanitize_key( $key ), esc_attr( $value ) );
-		}
-	}
-
-	return $html ? ' ' . implode( ' ', $html ) : '';
 }
 
 function is_valid_script_attribute( string $key ): bool {
