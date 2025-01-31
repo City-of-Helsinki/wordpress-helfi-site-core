@@ -3,8 +3,8 @@
 	* Plugin Name: Helsinki Site Core
 	* Description: Opinionated default customizations for Helsinki WordPress sites
 	* Requires at least: 6.0
-	* Requires PHP: 7.4
-	* Version: 2.0.0
+	* Requires PHP: 8.0
+	* Version: 3.0.0
 	* Author: ArtCloud
 	* Author URI: https://www.artcloud.fi
 	* License: GPL v3 or later
