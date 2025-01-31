@@ -8,10 +8,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 \add_filter( 'cmplz_known_script_tags', __NAMESPACE__ . '\\provide_cmplz_matomo_script' );
 function provide_cmplz_matomo_script( array $tags ): array {
-	$config = tracking_code_config( setting_values() );
+	$config = create_tracking_code_config( setting_values() );
 
 	$tags[] = array(
-		'name' => 'helsinki_matomo',
+		'name' => cmplz_integration_name(),
 		'category' => 'statistics',
 		'urls' => array( $config->url ),
 	);
