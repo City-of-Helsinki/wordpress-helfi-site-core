@@ -35,7 +35,6 @@ function register_menu_page(): string {
 		menu_page_required_capability(),
 		menu_page_slug(),
 		__NAMESPACE__ . '\\render_menu_page',
-		'dashicons-admin-generic',
 		85
 	);
 
