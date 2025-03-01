@@ -47,13 +47,19 @@ Plugin integrations with actions and filters.
 
 - Daily scheduled operation to clear lockout logs
 
-### Redirection
-[Redirection on wordpress.org](https://fi.wordpress.org/plugins/redirection/)
+### Matomo
 
-- Overwrite plugin options to prevent IP logging and HTTP header information logging
-- Prevent IP or HTTP header information from being stored to log entries
+- Custom `Settings > Helsinki Matomo` menu page
+- `helsinki_site_core_matomo[tracking][tracking_id]` setting for storing Matomo ID
+- If `tracking_id` is given, the plugin adds Matomo script tag to `wp_head`
 
 ### Polylang
 [Polylang on wordpress.org](https://fi.wordpress.org/plugins/polylang/)
 
 - Remove `pll_user` script from user related admin views
+
+### Redirection
+[Redirection on wordpress.org](https://fi.wordpress.org/plugins/redirection/)
+
+- Overwrite plugin options to prevent IP logging and HTTP header information logging
+- Prevent IP or HTTP header information from being stored to log entries
