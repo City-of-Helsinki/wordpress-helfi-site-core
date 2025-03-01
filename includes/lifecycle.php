@@ -7,14 +7,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function setup() : void {
-	setup_filters();
-	load_features();
-	load_integrations();
+	if ( ! did_action( 'helsinki_site_core_setup' ) ) {
+		do_action( 'helsinki_site_core_setup' );
+	}
 }
 
 function loaded() : void {
-	setup();
-
 	do_action( 'helsinki_site_core_loaded' );
 }
 
