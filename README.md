@@ -26,6 +26,11 @@ WordPress core customizations with actions and filters.
 - Remove admin footer text
 - Remove update footer text
 
+### Search
+
+- Replace search page `document_title` and `wp_title` with content from `helsinki_site_core_search_meta_title` filter
+- Provide translated *n results for the search term x* text via `helsinki_site_core_search_meta_title` filter
+
 ### Toolbar
 - Remove search item
 - Remove WP item
