@@ -42,6 +42,11 @@ WordPress core customizations with actions and filters.
 ## Integrations
 Plugin integrations with actions and filters.
 
+### Cache Enabler
+[Cache Enabler on wordpress.org](https://wordpress.org/plugins/cache-enabler/)
+
+- Execute `cache_enabler_clear_site_cache` on `helsinki_site_core_cache_clear` action
+
 ### Limit Login Attempts Reloaded
 [Limit Login Attempts Reloaded on wordpress.org](https://fi.wordpress.org/plugins/limit-login-attempts-reloaded/)
 
@@ -63,3 +68,13 @@ Plugin integrations with actions and filters.
 
 - Overwrite plugin options to prevent IP logging and HTTP header information logging
 - Prevent IP or HTTP header information from being stored to log entries
+
+### Smash Balloon
+[Smash Balloon social media plugins](https://smashballoon.com/)
+
+- Wraps social media feeds in a `aria-hidden="true"` `div` and  provides source links as a replacement for screen readers
+
+### Yoast SEO
+[Yoast SEO on wordpress.org](https://wordpress.org/plugins/wordpress-seo/)
+
+- On search page replace `wpseo_title` with content from `helsinki_site_core_search_meta_title` filter
