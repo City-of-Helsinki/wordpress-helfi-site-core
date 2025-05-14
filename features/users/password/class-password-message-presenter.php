@@ -15,11 +15,19 @@ class Password_Message_Presenter
 		return __( 'Invalid password', 'helsinki-site-core' );
 	}
 
-	public function hints( array $hints ): string
+	public function hints_text( array $hints ): string
 	{
 		return $this->password_requirements(
 			__( 'Helsinki password requirements', 'helsinki-site-core' ),
-			$hints
+			$this->to_html_paragraphs( $hints )
+		);
+	}
+
+	public function hints_list( array $hints ): string
+	{
+		return $this->password_requirements(
+			__( 'Helsinki password requirements', 'helsinki-site-core' ),
+			$this->to_html_list( $hints )
 		);
 	}
 
@@ -27,14 +35,16 @@ class Password_Message_Presenter
 	{
 		return $this->password_requirements(
 			$this->invalid_password(),
-			array_map(
-				array( $this, 'error_line' ),
-				$this->exception_messages( $exception )
+			$this->to_html_list(
+				array_map(
+					array( $this, 'error_line' ),
+					$this->exception_messages( $exception )
+				)
 			)
 		);
 	}
 
-	private function password_requirements( string $title, array $items ): string
+	private function password_requirements( string $title, string $content ): string
 	{
 		return \wp_kses(
 			sprintf(
@@ -43,7 +53,7 @@ class Password_Message_Presenter
 					%s
 				</div>',
 				$title,
-				$this->to_html_list( $items )
+				$content
 			),
 			$this->allowed_html(),
 		);
@@ -59,6 +69,16 @@ class Password_Message_Presenter
 	private function to_html_list_item( string $content ): string
 	{
 		return sprintf( '<li>%s</li>', $content );
+	}
+
+	private function to_html_paragraphs( array $items ): string
+	{
+		return implode( '', array_map( array( $this, 'to_html_paragraph' ), $items ) );
+	}
+
+	private function to_html_paragraph( string $content ): string
+	{
+		return sprintf( '<p>%s</p>', $content );
 	}
 
 	private function error_line( string $error ): string
@@ -77,6 +97,7 @@ class Password_Message_Presenter
 			'h2' => array(),
 			'ul' => array(),
 			'li' => array(),
+			'p' => array(),
 			'strong' => array(),
 		);
 	}
