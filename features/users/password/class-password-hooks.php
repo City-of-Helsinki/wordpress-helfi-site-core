@@ -20,13 +20,22 @@ class Password_Hooks
 	) {}
 
 	/**
+	 * Hide weak password checkbox.
+	 *
+	 * @return void
+	 */
+	public function hide_weak_password_checkbox(): void
+	{
+		$this->weak_password->hide_weak_password_checkbox();
+	}
+
+	/**
 	 * Disable weak password checkbox.
 	 *
 	 * @return void
 	 */
 	public function disable_weak_password_checkbox(): void
 	{
-		$this->weak_password->hide_weak_password_checkbox();
 		$this->weak_password->disable_weak_password_checkbox();
 	}
 
