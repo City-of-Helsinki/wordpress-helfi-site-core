@@ -15,6 +15,6 @@ class Weak_Password_Disabler
 
 	public function disable_weak_password_checkbox(): void
 	{
-		echo '<script>document.getElementById("pw-checkbox").disabled = true;</script>';
+		echo '<script>document.querySelector(\'[name="pw_weak"]\').disabled = true;</script>';
 	}
 }
