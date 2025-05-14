@@ -32,23 +32,31 @@ function init(): void {
 }
 
 function create_default_hooks(): Password_Hooks {
-	$rules = create_password_rules_factory();
-
 	return create_password_hooks(
 		create_password_validator(
-			array(
-				$rules->lowercase_character(),
-				$rules->uppercase_character(),
-				$rules->digit(),
-				$rules->special_character(),
-				$rules->min_length( 12 ),
-				$rules->min_unique_characters( 8 ),
-				$rules->max_length( 255 ),
-				$rules->max_repeating_characters( 2 ),
-			)
+			create_default_password_rules()
 		),
 		create_password_message_presenter(),
 		weak_password_disabler()
+	);
+}
+
+function create_default_password_rules(): array {
+	$rules = create_password_rules_factory();
+
+	return \apply_filters(
+		'helsinki_site_core_password_rules',
+		array(
+			$rules->lowercase_character(),
+			$rules->uppercase_character(),
+			$rules->digit(),
+			$rules->special_character(),
+			$rules->min_length( 12 ),
+			$rules->min_unique_characters( 8 ),
+			$rules->max_length( 255 ),
+			$rules->max_repeating_characters( 2 ),
+		),
+		$rules
 	);
 }
 
