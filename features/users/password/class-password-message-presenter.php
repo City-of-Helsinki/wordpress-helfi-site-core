@@ -10,24 +10,23 @@ use Exception;
 
 class Password_Message_Presenter
 {
+	public function invalid_password(): string
+	{
+		return __( 'Invalid password', 'helsinki-site-core' );
+	}
+
 	public function hints( array $hints ): string
 	{
-		return \wp_kses(
-			sprintf(
-				'<div class="helsinki-password-hints">
-					<h2>%s</h2>
-					%s
-				</div>',
-				__( 'Helsinki password requirements', 'helsinki-site-core' ),
-				$this->to_html_list( $hints )
-			),
-			$this->allowed_html(),
+		return $this->password_requirements(
+			__( 'Helsinki password requirements', 'helsinki-site-core' ),
+			$hints
 		);
 	}
 
 	public function validation_errors( Exception $exception ): string
 	{
-		return $this->to_html_list(
+		return $this->password_requirements(
+			$this->invalid_password(),
 			array_map(
 				array( $this, 'error_line' ),
 				$this->exception_messages( $exception )
@@ -35,14 +34,26 @@ class Password_Message_Presenter
 		);
 	}
 
+	private function password_requirements( string $title, array $items ): string
+	{
+		return \wp_kses(
+			sprintf(
+				'<div class="helsinki-password-hints">
+					<h2>%s</h2>
+					%s
+				</div>',
+				$title,
+				$this->to_html_list( $items )
+			),
+			$this->allowed_html(),
+		);
+	}
+
 	private function to_html_list( array $items ): string
 	{
 		$items = array_map( array( $this, 'to_html_list_item' ), $items );
 
-		return \wp_kses(
-			sprintf( '<ul>%s</ul>', implode( '', $items ) ),
-			$this->allowed_html(),
-		);
+		return sprintf( '<ul>%s</ul>', implode( '', $items ) );
 	}
 
 	private function to_html_list_item( string $content ): string
