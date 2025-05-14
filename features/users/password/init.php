@@ -10,6 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 function init(): void {
 	$hooks = create_default_hooks();
 
+	// Disable weak password checkbox
+	\add_action( 'login_init', array( $hooks, 'disable_weak_password_checkbox' ) );
+	\add_action( 'admin_head', array( $hooks, 'disable_weak_password_checkbox' ) );
 
 	// Display password requirement hints.
 	\add_filter( 'password_hint', array( $hooks, 'get_password_hints' ) );
@@ -42,12 +45,17 @@ function create_default_hooks(): Password_Hooks {
 				$rules->max_repeating_characters( 2 ),
 			)
 		),
-		create_password_message_presenter()
+		create_password_message_presenter(),
+		weak_password_disabler()
 	);
 }
 
-function create_password_hooks( Password_Validator $validator, Password_Message_Presenter $presenter ): Password_Hooks {
-	return new Password_Hooks( $validator, $presenter );
+function create_password_hooks(
+	Password_Validator $validator,
+	Password_Message_Presenter $presenter,
+	Weak_Password_Disabler $weak_password
+	): Password_Hooks {
+	return new Password_Hooks( $validator, $presenter, $weak_password );
 }
 
 function create_password_validator( array $rules ): Password_Validator {
@@ -60,4 +68,8 @@ function create_password_message_presenter(): Password_Message_Presenter {
 
 function create_password_rules_factory(): Password_Rules_Factory {
 	return new Password_Rules_Factory();
+}
+
+function weak_password_disabler(): Weak_Password_Disabler {
+	return new Weak_Password_Disabler();
 }
