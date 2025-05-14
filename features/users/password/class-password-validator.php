@@ -29,21 +29,23 @@ class Password_Validator
 
 	public function validate( string $password ): void
 	{
-		$rules_to_check = count( $this->rules );
+		$invalid_rules = array_reduce(
+			$this->rules,
+			function( $carry, $rule ) use ( $password ) {
+				try {
+					$rule->validate( $password );
 
-		$invalid_rules = null;
-
-		for ( $i=0; $i < $rules_to_check; $i++ ) {
-			try {
-				$this->rules[$i]->validate( $password );
-			} catch ( Exception $invalid_rule ) {
-				$invalid_rules = new Exception(
-					$invalid_rule->getMessage(),
-					$invalid_rule->getCode(),
-					$invalid_rules
-				);
-			}
-		}
+					return $carry;
+				} catch ( Exception $invalid_rule ) {
+					return new Exception(
+						$invalid_rule->getMessage(),
+						$invalid_rule->getCode(),
+						$carry
+					);
+				}
+			},
+			null
+		);
 
 		if ( $invalid_rules ) {
 			throw $invalid_rules;
