@@ -11,8 +11,10 @@ function init(): void {
 	$hooks = create_default_hooks();
 
 	// Disable weak password checkbox
-	\add_action( 'login_init', array( $hooks, 'disable_weak_password_checkbox' ) );
-	\add_action( 'admin_head', array( $hooks, 'disable_weak_password_checkbox' ) );
+	\add_action( 'login_head', array( $hooks, 'hide_weak_password_checkbox' ) );
+	\add_action( 'login_footer', array( $hooks, 'disable_weak_password_checkbox' ) );
+	\add_action( 'admin_head', array( $hooks, 'hide_weak_password_checkbox' ) );
+	\add_action( 'admin_footer', array( $hooks, 'disable_weak_password_checkbox' ) );
 
 	// Display password requirement hints.
 	\add_filter( 'password_hint', array( $hooks, 'get_password_hints' ) );
