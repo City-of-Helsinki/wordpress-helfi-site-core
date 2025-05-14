@@ -38,9 +38,9 @@ class Password_Validator
 				$this->rules[$i]->validate( $password );
 			} catch ( Exception $invalid_rule ) {
 				$invalid_rules = new Exception(
-					message: $invalid_rule->getMessage(),
-					code: $invalid_rule->getCode(),
-					previous: $invalid_rules
+					$invalid_rule->getMessage(),
+					$invalid_rule->getCode(),
+					$invalid_rules
 				);
 			}
 		}
