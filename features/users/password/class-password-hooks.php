@@ -15,15 +15,27 @@ class Password_Hooks
 {
 	public function __construct(
 		private Password_Validator $validator,
-		private Password_Message_Presenter $presenter
+		private Password_Message_Presenter $presenter,
+		private Weak_Password_Disabler $weak_password,
 	) {}
+
+	/**
+	 * Disable weak password checkbox.
+	 *
+	 * @return void
+	 */
+	public function disable_weak_password_checkbox(): void
+	{
+		$this->weak_password->hide_weak_password_checkbox();
+		$this->weak_password->disable_weak_password_checkbox();
+	}
 
 	/**
 	 * Get password requirement hints.
 	 *
 	 * @param string $hint The password hint text.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public function get_password_hints( string $hints ): string
 	{
