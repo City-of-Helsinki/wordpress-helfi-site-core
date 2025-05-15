@@ -15,7 +15,7 @@ class Password_Special_Character implements Password_Rule_Interface
 
 	public function validate( string $password ): void
 	{
-		if ( 1 !== preg_match( '/[!@#$%^&*()-_\'[\]{}<>~`+=,.;:\/?|]/', $password ) ) {
+		if ( 1 !== preg_match( '/[#$%^&*()@+=\-_\[\]\'\`;,.\/{}|":<>?!~\\\\]/', $password ) ) {
 			throw new \InvalidArgumentException(
 				__( 'The password does not contain a special character.', 'helsinki-site-core' )
 			);
