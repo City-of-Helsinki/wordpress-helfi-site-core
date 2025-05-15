@@ -39,7 +39,7 @@ Checked when a user tries to either reset or update their password.
 - At most 255 characters long.
 - At most 2 consecutive repeating characters. E.g. "%s" is not allowed.
 
-`apply_filters( 'body_class', Password_Rule_Interface[] $rules )`
+    apply_filters( 'body_class', Password_Rule_Interface[] $rules )
 
 Filters list of password rules for `Password_Validator`.
 
