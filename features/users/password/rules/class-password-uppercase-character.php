@@ -15,7 +15,7 @@ class Password_Uppercase_Character implements Password_Rule_Interface
 
 	public function validate( string $password ): void
 	{
-		if ( 1 !== preg_match( '/[a-z]/', $password ) ) {
+		if ( 1 !== preg_match( '/[A-Z]/', $password ) ) {
 			throw new \InvalidArgumentException(
 				__( 'The password does not contain an uppercase character.', 'helsinki-site-core' )
 			);
