@@ -26,6 +26,27 @@ WordPress core customizations with actions and filters.
 - Remove admin footer text
 - Remove update footer text
 
+### Password rules
+
+Checked when a user tries to either reset or update their password.
+
+- At least one digit, 0-9.
+- At least one lowercase character, a-z.
+- At least one uppercase character, A-Z.
+- At least 12 characters long.
+- At least 8 unique characters.
+- At least one special character, !@#$%^&*()-_'[]{}<>~\`+=,.;:/?|.
+- At most 255 characters long.
+- At most 2 consecutive repeating characters. E.g. "%s" is not allowed.
+
+`apply_filters( 'body_class', Password_Rule_Interface[] $rules )`
+
+Filters list of password rules for `Password_Validator`.
+
+#### Tests
+
+See `tests/Passwords`.
+
 ### Search
 
 - Replace search page `document_title` and `wp_title` with content from `helsinki_site_core_search_meta_title` filter
@@ -40,6 +61,8 @@ WordPress core customizations with actions and filters.
 - Disable user url field
 - Disable user description field
 - Disable user avatars
+- Disable and hide *Confirm use of weak password* checkbox
+- Enforce strong passwords
 
 ### WP Head
 - Remove unnecessary links and meta data from `wp_head()`
