@@ -41,6 +41,8 @@ Checked when a user tries to either reset or update their password.
 
 ```
 apply_filters( 'body_class', Password_Rule_Interface[] $rules )
+
+$rules - array of Password_Rule_Interface objects
 ```
 
 Filters list of password rules for `Password_Validator`.
