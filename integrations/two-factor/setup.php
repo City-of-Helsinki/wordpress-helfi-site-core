@@ -13,6 +13,7 @@ use WP_User;
 function init(): void {
 	\add_filter( 'two_factor_providers', __NAMESPACE__ . '\\allowed_two_factor_providers' );
 	\add_filter( 'show_user_profile', __NAMESPACE__ . '\\available_two_factor_providers', 0 );
+	\add_filter( 'edit_user_profile', __NAMESPACE__ . '\\available_two_factor_providers', 0 );
 	\add_action( 'init', __NAMESPACE__ . '\\check_user_two_factor_status' );
 }
 
