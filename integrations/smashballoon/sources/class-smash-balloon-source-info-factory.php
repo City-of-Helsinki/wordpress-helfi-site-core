@@ -33,9 +33,12 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 			return $this->no_source_info();
 		}
 
-		return new Social_Wall_Source_Info(
-			(new \SB\SocialWall\Admin\Feed_Saver( $feed_id ))->get_feed_plugins()
-		);
+		$data = (new \SB\SocialWall\Admin\Feed_Saver( $feed_id ))->get_feed_plugins();
+		if ( ! is_array( $data ) ) {
+			return $this->no_source_info();
+		}
+
+		return new Social_Wall_Source_Info( $data );
 	}
 
 	public function facebook_source_info( array $attributes ): Source_Info_Interface
@@ -46,9 +49,12 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 			return $this->no_source_info();
 		}
 
-		return new Facebook_Source_Info(
-			(new \CustomFacebookFeed\Builder\CFF_Feed_Saver( $feed_id ))->get_feed_settings()
-		);
+		$data = (new \CustomFacebookFeed\Builder\CFF_Feed_Saver( $feed_id ))->get_feed_settings();
+		if ( ! is_array( $data ) ) {
+			return $this->no_source_info();
+		}
+
+		return new Facebook_Source_Info( $data );
 	}
 
 	public function instagram_source_info( array $attributes ): Source_Info_Interface
@@ -59,9 +65,12 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 			return $this->no_source_info();
 		}
 
-		return new Instagram_Source_Info(
-			(new \InstagramFeed\Builder\SBI_Feed_Saver( $feed_id ))->get_feed_settings()
-		);
+		$data = (new \InstagramFeed\Builder\SBI_Feed_Saver( $feed_id ))->get_feed_settings();
+		if ( ! is_array( $data ) ) {
+			return $this->no_source_info();
+		}
+
+		return new Instagram_Source_Info( $data );
 	}
 
 	public function twitter_source_info( array $attributes ): Source_Info_Interface
@@ -72,9 +81,12 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 			return $this->no_source_info();
 		}
 
-		return new Twitter_Source_Info(
-			(new \TwitterFeed\Builder\CTF_Feed_Saver( $feed_id ))->get_feed_settings()
-		);
+		$data = (new \TwitterFeed\Builder\CTF_Feed_Saver( $feed_id ))->get_feed_settings();
+		if ( ! is_array( $data ) ) {
+			return $this->no_source_info();
+		}
+
+		return new Twitter_Source_Info( $data );
 	}
 
 	public function youtube_source_info( array $attributes ): Source_Info_Interface
@@ -85,9 +97,12 @@ class Smash_Balloon_Source_Info_Factory implements Source_Info_Factory_Interface
 			return $this->no_source_info();
 		}
 
-		return new YouTube_Source_Info(
-			(new \SmashBalloon\YouTubeFeed\Builder\SBY_Feed_Saver( $feed_id ))->get_feed_settings()
-		);
+		$data = (new \SmashBalloon\YouTubeFeed\Builder\SBY_Feed_Saver( $feed_id ))->get_feed_settings();
+		if ( ! is_array( $data ) ) {
+			return $this->no_source_info();
+		}
+
+		return new YouTube_Source_Info( $data );
 	}
 
 	protected function feed_id( array $attributes ): int
