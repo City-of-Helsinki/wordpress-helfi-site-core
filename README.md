@@ -42,7 +42,7 @@ Checked when a user tries to either reset or update their password.
 #### Filtering the rule set
 
 ```
-apply_filters( 'body_class', Password_Rule_Interface[] $rules )
+apply_filters( 'helsinki_site_core_password_rules', Password_Rule_Interface[] $rules, Password_Rules_Factory $factory )
 ```
 
 Filters list of password rules for `Password_Validator`.
