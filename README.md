@@ -106,6 +106,13 @@ Plugin integrations with actions and filters.
 
 - Wraps social media feeds in a `aria-hidden="true"` `div` and  provides source links as a replacement for screen readers
 
+### Two Factor
+[Two Factor](https://wordpress.org/plugins/two-factor/)
+
+- Forces email as the only allowed two factor method
+- Checks, if the current user has email 2FA enabled, force enabling it if not, and requires user to re-authenticate afterwards
+- Disables 2FA options on user profile page
+
 ### Yoast SEO
 [Yoast SEO on wordpress.org](https://wordpress.org/plugins/wordpress-seo/)
 
