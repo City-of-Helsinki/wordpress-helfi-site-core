@@ -24,7 +24,30 @@ function allowed_two_factor_providers( array $providers ): array {
 }
 
 function available_two_factor_providers(): void {
-	\add_filter( 'two_factor_providers_for_user', '__return_empty_array' );
+	if ( is_two_factor_active() ) {
+		\add_filter( 'two_factor_providers_for_user', '__return_empty_array' );
+
+		\remove_action( 'show_user_profile', array( Two_Factor_Core::class, 'user_two_factor_options' ) );
+		\remove_action( 'edit_user_profile', array( Two_Factor_Core::class, 'user_two_factor_options' ) );
+
+		\add_action( 'show_user_profile', __NAMESPACE__ . '\\profile_two_factor_options', 9 );
+		\add_action( 'edit_user_profile', __NAMESPACE__ . '\\profile_two_factor_options', 9 );
+	}
+}
+
+function profile_two_factor_options( WP_User $user ): void {
+	$providers = Two_Factor_Core::get_providers();
+	$email_provider = $providers[two_factor_email_provider()] ?? null;
+
+	if ( $email_provider ) {
+		printf(
+			'<h2>%s</h2>
+			<p><strong>%s</strong>: %s</p>',
+			\esc_html( __( 'Two-Factor Authentication', 'helsinki-site-core' ) ),
+			\esc_html( __( 'Allowed methods', 'helsinki-site-core' ) ),
+			\esc_html( $email_provider->get_label() )
+		);
+	}
 }
 
 function check_user_two_factor_status(): void {

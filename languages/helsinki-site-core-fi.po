@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Helsinki Site Core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:58+0000\n"
-"PO-Revision-Date: 2025-05-15 19:10+0000\n"
+"PO-Revision-Date: 2026-02-18 10:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: Suomi\n"
 "Language: fi\n"
@@ -44,6 +44,10 @@ msgstr "%1$s X:ssä"
 msgctxt "%1$s: profile name"
 msgid "%1$s on YouTube"
 msgstr "%1$s YouTubessa"
+
+#: integrations/two-factor/setup.php:47
+msgid "Allowed methods"
+msgstr "Sallitut menetelmät"
 
 #. Author of the plugin
 msgid "ArtCloud"
@@ -184,3 +188,7 @@ msgstr "Salasana on alle %d merkkiä pitkä."
 #: features/users/password/rules/class-password-max-length.php:28
 msgid "The password is more than %d characters long."
 msgstr "Salasana on yli %d merkkiä pitkä."
+
+#: integrations/two-factor/setup.php:46
+msgid "Two-Factor Authentication"
+msgstr "Kaksivaiheinen tunnistautuminen"
