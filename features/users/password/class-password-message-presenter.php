@@ -1,0 +1,115 @@
+<?php
+
+namespace Helsinki\WordPress\Site\Core\Features\Users\Password;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+use Exception;
+
+class Password_Message_Presenter
+{
+	public function invalid_password(): string
+	{
+		return __( 'Invalid password', 'helsinki-site-core' );
+	}
+
+	public function hints_text( array $hints ): string
+	{
+		return $this->password_requirements(
+			__( 'Helsinki password requirements', 'helsinki-site-core' ),
+			$this->to_html_paragraphs( $hints )
+		);
+	}
+
+	public function hints_list( array $hints ): string
+	{
+		return $this->password_requirements(
+			__( 'Helsinki password requirements', 'helsinki-site-core' ),
+			$this->to_html_list( $hints )
+		);
+	}
+
+	public function validation_errors( Exception $exception ): string
+	{
+		return $this->password_requirements(
+			$this->invalid_password(),
+			$this->to_html_list(
+				array_map(
+					array( $this, 'error_line' ),
+					$this->exception_messages( $exception )
+				)
+			)
+		);
+	}
+
+	private function password_requirements( string $title, string $content ): string
+	{
+		return \wp_kses(
+			sprintf(
+				'<div class="helsinki-password-hints">
+					<h2>%s</h2>
+					%s
+				</div>',
+				$title,
+				$content
+			),
+			$this->allowed_html(),
+		);
+	}
+
+	private function to_html_list( array $items ): string
+	{
+		$items = array_map( array( $this, 'to_html_list_item' ), $items );
+
+		return sprintf( '<ul>%s</ul>', implode( '', $items ) );
+	}
+
+	private function to_html_list_item( string $content ): string
+	{
+		return sprintf( '<li>%s</li>', $content );
+	}
+
+	private function to_html_paragraphs( array $items ): string
+	{
+		return implode( '', array_map( array( $this, 'to_html_paragraph' ), $items ) );
+	}
+
+	private function to_html_paragraph( string $content ): string
+	{
+		return sprintf( '<p>%s</p>', $content );
+	}
+
+	private function error_line( string $error ): string
+	{
+		return sprintf(
+			'<strong>%s:</strong> %s',
+			__( 'Error', 'helsinki-site-core' ),
+			$error
+		);
+	}
+
+	private function allowed_html(): array
+	{
+		return array(
+			'div' => array( 'class' => array() ),
+			'h2' => array(),
+			'ul' => array(),
+			'li' => array(),
+			'p' => array(),
+			'strong' => array(),
+		);
+	}
+
+	private function exception_messages( Exception $exception ): array
+	{
+		$messages = array();
+
+		do {
+			$messages[] = $exception->getMessage();
+		} while ( $exception = $exception->getPrevious() );
+
+		return array_reverse( $messages );
+	}
+}

@@ -25,5 +25,8 @@ return array(
 	),
 	'users' => array(
 		'profile',
+		'password' => array(
+			'init'
+		),
 	),
 );

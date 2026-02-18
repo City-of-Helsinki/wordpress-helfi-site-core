@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Helsinki Site Core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:58+0000\n"
-"PO-Revision-Date: 2024-12-17 10:25+0000\n"
+"PO-Revision-Date: 2026-02-18 10:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: Suomi\n"
 "Language: fi\n"
@@ -45,9 +45,48 @@ msgctxt "%1$s: profile name"
 msgid "%1$s on YouTube"
 msgstr "%1$s YouTubessa"
 
+#: integrations/two-factor/setup.php:47
+msgid "Allowed methods"
+msgstr "Sallitut menetelmät"
+
 #. Author of the plugin
 msgid "ArtCloud"
 msgstr "ArtCloud"
+
+#: features/users/password/rules/class-password-min-length.php:18
+msgid "At least %d characters long."
+msgstr "Vähintään %d merkkiä pitkä."
+
+#: features/users/password/rules/class-password-min-unique-characters.php:18
+msgid "At least %d unique characters."
+msgstr "Vähintään %d ainutlaatuista merkkiä."
+
+#: features/users/password/rules/class-password-digit.php:13
+msgid "At least one digit, 0-9."
+msgstr "Vähintään yksi numero, 0-9."
+
+#: features/users/password/rules/class-password-lowercase-character.php:13
+msgid "At least one lowercase character, a-z."
+msgstr "Vähintään yksi pieni kirjain, a-z."
+
+#: features/users/password/rules/class-password-special-character.php:13
+msgid "At least one special character, !@#$%^&*()-_'[]{}<>~`+=,.;:/?|."
+msgstr "Vähintään yksi erikoismerkki, !@#$%^&*()-_'[]{}<>~`+=,.;:/?|."
+
+#: features/users/password/rules/class-password-uppercase-character.php:13
+msgid "At least one uppercase character, A-Z."
+msgstr "Vähintään yksi iso kirjain, A-Z."
+
+#: features/users/password/rules/class-password-max-length.php:18
+msgid "At most %d characters long."
+msgstr "Enintään %d merkkiä pitkä."
+
+#: features/users/password/rules/class-password-max-repeating-characters.php:18
+#, php-format
+msgid ""
+"At most %d consecutive repeating characters. E.g. \"%s\" is not allowed."
+msgstr ""
+"Enintään %d peräkkäistä toistuvaa merkkiä. Esim. \"%s\" ei ole sallittu."
 
 #: features/block-editor/reusable-blocks-menu.php:19
 #: features/block-editor/reusable-blocks-menu.php:20
@@ -58,6 +97,20 @@ msgstr "Lohkot"
 msgid "City of Helsinki"
 msgstr "Helsingin kaupunki"
 
+#: features/users/password/class-password-message-presenter.php:88
+msgid "Error"
+msgstr "Virhe"
+
+#: integrations/matomo/init.php:36 integrations/matomo/menu-page.php:33
+#: integrations/matomo/menu-page.php:34
+msgid "Helsinki Matomo"
+msgstr "Helsinki Matomo"
+
+#: features/users/password/class-password-message-presenter.php:21
+#: features/users/password/class-password-message-presenter.php:29
+msgid "Helsinki password requirements"
+msgstr "Helsinki salasanavaatimukset"
+
 #. Name of the plugin
 msgid "Helsinki Site Core"
 msgstr "Helsinki-sivustoydin"
@@ -65,6 +118,10 @@ msgstr "Helsinki-sivustoydin"
 #. Author URI of the plugin
 msgid "https://www.artcloud.fi"
 msgstr "https://www.artcloud.fi"
+
+#: features/users/password/class-password-message-presenter.php:15
+msgid "Invalid password"
+msgstr "Virheellinen salasana"
 
 #: features/login/view.php:26
 msgctxt "Login error"
@@ -77,6 +134,10 @@ msgid ""
 "Please contact your site admin or developer if you continue having problems."
 msgstr ""
 "Ota yhteyttä sivustosi ylläpitäjään tai kehittäjään, jos ongelmat jatkuvat."
+
+#: integrations/matomo/settings-fields.php:18
+msgid "Matomo ID"
+msgstr "Matomo ID"
 
 #. Description of the plugin
 msgid "Opinionated default customizations for Helsinki WordPress sites"
@@ -95,3 +156,39 @@ msgstr[1] "%1$d hakutulosta hakusanalle %2$s"
 msgctxt "search meta_title %1$s: search term"
 msgid "0 results for the search term %1$s"
 msgstr "0 hakutulosta hakusanalle %1$s"
+
+#: features/users/password/rules/class-password-min-unique-characters.php:28
+msgid "The password contains less than %d unique characters."
+msgstr "Salasana sisältää alle %d ainutlaatuista merkkiä."
+
+#: features/users/password/rules/class-password-max-repeating-characters.php:32
+msgid "The password contains more than %d consecutive repeating characters."
+msgstr "Salasana sisältää yli %d peräkkäistä toistuvaa merkkiä."
+
+#: features/users/password/rules/class-password-lowercase-character.php:20
+msgid "The password does not contain a lowercase character."
+msgstr "Salasana ei sisällä pieniä kirjaimia."
+
+#: features/users/password/rules/class-password-special-character.php:20
+msgid "The password does not contain a special character."
+msgstr "Salasana ei sisällä erikoismerkkiä."
+
+#: features/users/password/rules/class-password-uppercase-character.php:20
+msgid "The password does not contain an uppercase character."
+msgstr "Salasana ei sisällä isoja kirjaimia."
+
+#: features/users/password/rules/class-password-digit.php:20
+msgid "The password does not contain any digits."
+msgstr "Salasana ei sisällä numeroita."
+
+#: features/users/password/rules/class-password-min-length.php:28
+msgid "The password is less than %d characters long."
+msgstr "Salasana on alle %d merkkiä pitkä."
+
+#: features/users/password/rules/class-password-max-length.php:28
+msgid "The password is more than %d characters long."
+msgstr "Salasana on yli %d merkkiä pitkä."
+
+#: integrations/two-factor/setup.php:46
+msgid "Two-Factor Authentication"
+msgstr "Kaksivaiheinen tunnistautuminen"

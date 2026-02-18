@@ -17,5 +17,6 @@ return array(
 	'polylang' => 'users',
 	'redirection' => 'default-options',
 	'smashballoon' => 'init',
+	'two-factor' => 'setup',
 	'wordpress-seo' => 'meta',
 );
