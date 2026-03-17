@@ -59,9 +59,15 @@ function check_user_two_factor_status(): void {
 }
 
 function should_force_enable_two_factor( WP_User $user ): bool {
-	return \is_user_logged_in()
+	$force = \is_user_logged_in()
 		&& is_two_factor_active()
 		&& ! has_two_factor_enabled( $user );
+
+	return \apply_filters(
+		'helsinki_site_core_force_enable_two_factor',
+		$force,
+		$user
+	);
 }
 
 function force_user_to_reauthenticate(): void {
