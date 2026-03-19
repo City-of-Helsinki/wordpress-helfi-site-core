@@ -14,6 +14,7 @@ function init(): void {
 	\add_filter( 'two_factor_providers', __NAMESPACE__ . '\\allowed_two_factor_providers' );
 	\add_filter( 'show_user_profile', __NAMESPACE__ . '\\available_two_factor_providers', 0 );
 	\add_filter( 'edit_user_profile', __NAMESPACE__ . '\\available_two_factor_providers', 0 );
+	\add_action( 'user_register', __NAMESPACE__ . '\\setup_user_two_factor' );
 	\add_action( 'init', __NAMESPACE__ . '\\check_user_two_factor_status' );
 }
 
@@ -50,6 +51,17 @@ function profile_two_factor_options( WP_User $user ): void {
 	}
 }
 
+function setup_user_two_factor( int $user_id ): void {
+	$user = \get_user_by( 'ID', $user_id );
+
+	if (
+		$user instanceof WP_User
+		&& should_force_enable_two_factor( $user )
+	) {
+		enable_two_factor_provider( $user );
+	}
+}
+
 function check_user_two_factor_status(): void {
 	if ( should_force_enable_two_factor( \wp_get_current_user() ) ) {
 		if ( enable_two_factor_provider( \wp_get_current_user() ) ) {
@@ -59,7 +71,7 @@ function check_user_two_factor_status(): void {
 }
 
 function should_force_enable_two_factor( WP_User $user ): bool {
-	$force = \is_user_logged_in()
+	$force = $user->exists()
 		&& is_two_factor_active()
 		&& ! has_two_factor_enabled( $user );
 
