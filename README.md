@@ -113,6 +113,12 @@ Plugin integrations with actions and filters.
 - Checks, if the current user has email 2FA enabled, force enabling it if not, and requires user to re-authenticate afterwards
 - Disables 2FA options on user profile page
 
+To conditionally disable 2FA enforcement for a user hook to the following filter.
+
+```
+apply_filters( 'helsinki_site_core_force_enable_two_factor', bool $force, WP_User $user )
+```
+
 ### Yoast SEO
 [Yoast SEO on wordpress.org](https://wordpress.org/plugins/wordpress-seo/)
 
