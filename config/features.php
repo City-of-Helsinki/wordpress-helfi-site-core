@@ -20,6 +20,7 @@ return array(
 	'login' => array(
 		'view',
 	),
+	'plugins' => 'management',
 	'search' => array(
 		'meta',
 	),
