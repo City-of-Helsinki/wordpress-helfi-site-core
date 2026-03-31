@@ -55,7 +55,7 @@ See `tests/Passwords`.
 
 - Plugin activation and deactivation action links removed
 - Plugin activation and deactivation bulk actions removed
-- Use constant or filters to change site core behaviour, [read more](/features/plugins/management).
+- Use constant or filters to change site core behaviour, [read more](/features/plugins/management/README.md).
 
 ### Search
 
