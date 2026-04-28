@@ -51,6 +51,12 @@ Filters list of password rules for `Password_Validator`.
 
 See `tests/Passwords`.
 
+### Plugins
+
+- Plugin activation and deactivation action links removed
+- Plugin activation and deactivation bulk actions removed
+- Use constant or filters to change site core behaviour, [read more](/features/plugins/management/README.md).
+
 ### Search
 
 - Replace search page `document_title` and `wp_title` with content from `helsinki_site_core_search_meta_title` filter

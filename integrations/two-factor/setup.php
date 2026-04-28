@@ -9,13 +9,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 use Two_Factor_Core;
 use WP_User;
 
-\add_action( 'helsinki_site_core_loaded', __NAMESPACE__ . '\\init' );
-function init(): void {
+\add_action( 'helsinki_site_core_loaded', __NAMESPACE__ . '\\loaded' );
+function loaded(): void {
 	\add_filter( 'two_factor_providers', __NAMESPACE__ . '\\allowed_two_factor_providers' );
 	\add_filter( 'show_user_profile', __NAMESPACE__ . '\\available_two_factor_providers', 0 );
 	\add_filter( 'edit_user_profile', __NAMESPACE__ . '\\available_two_factor_providers', 0 );
 	\add_action( 'user_register', __NAMESPACE__ . '\\setup_user_two_factor' );
 	\add_action( 'init', __NAMESPACE__ . '\\check_user_two_factor_status' );
+}
+
+\add_action( 'helsinki_site_core_init', __NAMESPACE__ . '\\init' );
+function init(): void {
+	if ( \is_admin() ) {
+		\remove_action( 'admin_menu', 'two_factor_add_settings_page' );
+	}
 }
 
 function allowed_two_factor_providers( array $providers ): array {
