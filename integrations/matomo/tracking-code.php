@@ -18,7 +18,8 @@ function provide_tracking_script(): void {
 
 function create_tracking_code_config( array $settings ): Tracking_Code_Config {
 	return new Tracking_Code_Config(
-		site_id: absint( $settings['tracking']['tracking_id'] )
+		site_id: absint( $settings['tracking']['tracking_id'] ),
+		script: ''
 	);
 }
 
