@@ -12,7 +12,7 @@ class Tracking_Code_Config
 		public readonly int $site_id,
 		public readonly string $url = '//webanalytics.digiaiiris.com/js/',
 		public readonly string $tracker = 'tracker.php',
-		public readonly string $script = 'piwik.min.js',
+		public readonly string $script = '',
 		public readonly bool $track_page_view = true,
 		public readonly bool $enable_link_tracking = true
 	) {}
