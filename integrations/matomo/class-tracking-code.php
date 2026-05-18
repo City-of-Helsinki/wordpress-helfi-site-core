@@ -60,7 +60,11 @@ class Tracking_Code
 				(string) $this->config->site_id
 			),
 			"var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];",
-			"g.async=true; g.src=u+'piwik.min.js';",
+			'g.async=true;',
+			sprintf(
+				"g.src=u+'%s';",
+				(string) $this->config->script
+			),
 			's.parentNode.insertBefore(g,s);',
 			'})();',
 		) );
