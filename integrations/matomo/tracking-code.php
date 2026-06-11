@@ -17,12 +17,24 @@ function provide_tracking_script(): void {
 }
 
 function create_tracking_code_config( array $settings ): Tracking_Code_Config {
-	return new Tracking_Code_Config(
+	$config = new Tracking_Code_Config(
 		site_id: absint( $settings['tracking']['tracking_id'] ),
 		script: ''
+	);
+
+	return \apply_filters(
+		'helsinki_site_core_matomo_tracking_code_config',
+		$config,
+		$settings
 	);
 }
 
 function create_tracking_code( Tracking_Code_Config $config ): Tracking_Code {
-	return new Tracking_Code( $config );
+	$tracking_code = new Tracking_Code( $config );
+
+	return \apply_filters(
+		'helsinki_site_core_matomo_tracking_code',
+		$tracking_code,
+		$config
+	);
 }
