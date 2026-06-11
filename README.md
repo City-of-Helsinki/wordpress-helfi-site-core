@@ -96,6 +96,14 @@ Plugin integrations with actions and filters.
 - `helsinki_site_core_matomo[tracking][tracking_id]` setting for storing Matomo ID
 - If `tracking_id` is given, the plugin adds Matomo script tag to `wp_head`
 
+```PHP
+# Modify tracking code config
+apply_filters( 'helsinki_site_core_matomo_tracking_code_config', Tracking_Code_Config $config, array $settings )
+
+# Modify tracking code
+apply_filters( 'helsinki_site_core_matomo_tracking_code', Tracking_Code $tracking_code, Tracking_Code_Config $config )
+```
+
 ### Polylang
 [Polylang on wordpress.org](https://fi.wordpress.org/plugins/polylang/)
 
