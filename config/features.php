@@ -15,6 +15,7 @@ return array(
 		'view',
 	),
 	'cleanup' => array(
+		'disable-emojis',
 		'wp-head',
 	),
 	'login' => array(
