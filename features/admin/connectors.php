@@ -8,10 +8,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 \add_action( 'helsinki_site_core_loaded', __NAMESPACE__ . '\\init' );
 function init(): void {
-    if ( ! \wp_supports_ai() ) {
+    if ( should_disable_connectors_page() ) {
         \add_action( 'admin_init', __NAMESPACE__ . '\\remove_connectors_page' );
         \add_action( 'admin_init', __NAMESPACE__ . '\\redirect_connectors_page' );
     }
+}
+
+function should_disable_connectors_page(): bool {
+    if ( function_exists( 'wp_supports_ai' ) ) {
+        return ! \wp_supports_ai();
+    }
+
+    return false;
 }
 
 function remove_connectors_page(): void {
