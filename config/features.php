@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 return array(
 	'admin' => array(
 		'dashboard',
+		'connectors',
 		'notices',
 		'toolbar',
 	),
