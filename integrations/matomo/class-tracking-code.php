@@ -93,9 +93,11 @@ class Tracking_Code
 				return !! statuses.find(({group, consented}) => (group === consentType && true === consented));
 			};
 
+			const YEAR_IN_HOURS = 8765;
+
 			const toggleMatomoConsent = (hasConsent) => {
 				if (hasConsent) {
-					_paq.push(['rememberCookieConsentGiven', 8765]);
+					_paq.push(['rememberCookieConsentGiven', YEAR_IN_HOURS]);
 				} else {
 					_paq.push(['forgetCookieConsentGiven']);
 				}
