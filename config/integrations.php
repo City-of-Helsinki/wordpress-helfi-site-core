@@ -18,5 +18,5 @@ return array(
 	'redirection' => 'default-options',
 	'smashballoon' => 'init',
 	'two-factor' => 'setup',
-	'wordpress-seo' => 'meta',
+	'wordpress-seo' => 'setup',
 );
