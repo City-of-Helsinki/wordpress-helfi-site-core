@@ -40,6 +40,8 @@ function provide_cookies( array $cookies ): array {
 		require_once \plugin_dir_path( __FILE__ ) . 'cookies/class-mtm-cookie-consent.php';
 
 		$cookies[] = Cookies\Mtm_Cookie_Consent::class;
+		$cookies[] = Cookies\Pk_Id::class;
+		$cookies[] = Cookies\Pk_Ses::class;
 	}
 
 	return $cookies;
