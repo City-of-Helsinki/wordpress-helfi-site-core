@@ -21,16 +21,21 @@ class Tracking_Code
 	{
 		return sprintf(
 			'<meta name="helsinki-matomo" content="%d">
-			<script>%s %s</script>',
+			<script>%s %s %s</script>',
 			esc_attr( $this->config->site_id ),
 			$this->script_config(),
-			$this->script_handler()
+			$this->script_handler(),
+			$this->cookie_handler()
 		);
 	}
 
 	protected function script_config(): string
 	{
 		$out = array( 'var _paq = window._paq = window._paq || [];' );
+
+		if ( $this->config->cookieless_tracking ) {
+			$out[] = "_paq.push(['requireCookieConsent']);";
+		}
 
 		if ( $this->config->track_page_view ) {
 			$out[] = "_paq.push(['trackPageView']);";
@@ -68,5 +73,43 @@ class Tracking_Code
 			's.parentNode.insertBefore(g,s);',
 			'})();',
 		) );
+	}
+
+	protected function cookie_handler(): string
+	{
+		return "(function() {
+			const consentType = 'statistics';
+
+			const consentGiven = ({detail}) => {
+				let {acceptedGroups} = detail || {};
+
+				return Array.isArray(acceptedGroups)
+					&& acceptedGroups.includes(consentType);
+			};
+
+			const hasConsent = (hds) => {
+				let statuses = hds?.cookieConsent?.getAllConsentStatuses() || [];
+
+				return !! statuses.find(({group, consented}) => (group === consentType && true === consented));
+			};
+
+			const YEAR_IN_HOURS = 8765;
+
+			const toggleMatomoConsent = (hasConsent) => {
+				if (hasConsent) {
+					_paq.push(['rememberCookieConsentGiven', YEAR_IN_HOURS]);
+				} else {
+					_paq.push(['forgetCookieConsentGiven']);
+				}
+			};
+
+			window.addEventListener('hds-cookie-consent-ready', (event) => {
+				toggleMatomoConsent(hasConsent(window?.hds));
+
+				window.addEventListener('hds-cookie-consent-changed', (event) => {
+					toggleMatomoConsent(consentGiven(event));
+				});
+			});
+		})();";
 	}
 }

@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 return array(
 	'admin' => array(
 		'dashboard',
+		'connectors',
 		'notices',
 		'toolbar',
 	),
@@ -15,6 +16,7 @@ return array(
 		'view',
 	),
 	'cleanup' => array(
+		'disable-emojis',
 		'wp-head',
 	),
 	'login' => array(

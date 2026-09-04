@@ -14,6 +14,7 @@ class Tracking_Code_Config
 		public readonly string $tracker = 'tracker.php',
 		public readonly string $script = 'piwik.min.js',
 		public readonly bool $track_page_view = true,
-		public readonly bool $enable_link_tracking = true
+		public readonly bool $enable_link_tracking = true,
+		public readonly bool $cookieless_tracking = true
 	) {}
 }
