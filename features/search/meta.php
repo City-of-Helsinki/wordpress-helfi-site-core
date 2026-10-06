@@ -58,7 +58,7 @@ function search_found_items_count(): int {
 }
 
 function search_term(): string {
-	return get_query_var( 's' );
+	return get_search_query();
 }
 
 function site_name(): string {
