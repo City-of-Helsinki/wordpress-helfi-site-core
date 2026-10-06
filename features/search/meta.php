@@ -22,7 +22,10 @@ function provide_search_meta_title( string $title ): string {
 }
 
 function search_meta_title(): string {
-	return implode( ' | ', search_meta_title_parts( search_found_items_count(), search_term() ) );
+	return implode( ' | ', array_filter( array_map(
+		'esc_html',
+		search_meta_title_parts( search_found_items_count(), search_term() )
+	) ) );
 }
 
 function search_meta_title_parts( int $found, string $term ): array {
